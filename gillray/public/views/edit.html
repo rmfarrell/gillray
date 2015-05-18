@@ -1,0 +1,65 @@
+<h1>This is the Edit template</h1>
+<form class="edit-form row" ng-submit="submitEdits()">
+	
+	<div class="row">
+		
+		<div class="columns medium-1">
+			
+			<!-- Bohn ID -->
+			<div class="bohn-id-container row">
+				<h2>ID</h2>
+				<input class="" placeholder="number" type="number" ng-model="print.bohnID" />
+			</div>
+		</div>
+		
+		<div class="columns medium-11">
+			
+			<!-- Title -->
+			<div class="bohn-id-container row">
+				<h2>Title</h2>
+				<input class="" placeholder="Title" type="text" ng-model="print.title" />
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="row">
+		
+		<div class="columns medium-3">
+			
+			<!-- Date -->
+			<div class="date row">
+				<h2>Date</h2>
+				<input class="" type="date" ng-model="print.date"/>
+			</div>
+		</div>
+		
+		<div class="columns medium-5">
+
+			<!-- Images -->
+			<div class="images-container ">
+				<h2>Images</h2>
+				<!-- Repeat them -->
+				<div ng-repeat="i in print.images" class="row">
+					<p class="large-10 columns">
+						<input type="text" value="{{i}}" />
+					</p>
+					<a class="small-2" value="delete" ng-click="deleteImage(i)">X</a>
+				</div>
+
+				<!-- Always blank -->
+				<div class="row">
+					<p class="large-10 columns">
+						<input form-adder type="text" placeholder="image url" update="addimage('test');" event-type="blur" ng-model="newimage"/>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="columns medium-4">
+			
+		</div>
+	</div>
+	
+	<input type="submit" />
+</form>

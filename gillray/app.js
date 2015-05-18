@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var compass = require('compass')
 
 //Mongo
 var mongo = require('mongodb');
@@ -13,7 +14,8 @@ var db = monk('localhost:27017/gillray');
 //Routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var users = require('./routes/prints');
+var prints = require('./routes/prints');
+var api = require('./routes/api');
 
 var app = express();
 
@@ -37,7 +39,8 @@ app.use(function(req,res,next){
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/prints', users);
+app.use('/prints', prints);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

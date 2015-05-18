@@ -1,0 +1,1 @@
+var gillray = angular.module('gillray', []);

@@ -1,3 +1,7 @@
 extends layout
 
-div(ng-view ng-controller="edit-post")
+block content
+	div(ng-app="gillray")
+		div(ng-controller="single")
+			div(ng-include="'/views/edit.html'")
+			div(ng-view)

@@ -1,3 +1,5 @@
 .DS_Store
 gillray/data
 gillray/node_modules
+.sass-cache
+npm-debug.log
