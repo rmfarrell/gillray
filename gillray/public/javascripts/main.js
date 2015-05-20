@@ -1,10 +1,25 @@
-var gillray = angular.module('gillray', []);
-gillray.service('prints', ['$q', function($q) {
+var gillray = angular.module('gillray',[]);
+gillray.service('prints', ['$q', '$http', function($q, $http) {
 	
-	this.get = function() {
+	this.getPrint = function(id) {
 		
+		var url = '/api/print/' + id;
+		
+		var deferred = $q.defer();
+		
+		$http.get(url).success(function(data) {
+			
+			data[0].bohnID = parseInt(data[0].bohnID);
+			
+			deferred.resolve(data);
+			
+		}).error(function(err) {
+			
+			console.log(err)
+		});
+		
+		return deferred.promise;
 	};
-	
 }]);
 gillray.directive('formAdder', function() {
 	
@@ -18,18 +33,23 @@ gillray.directive('formAdder', function() {
 		
 		link: function(scope, el, attrs) {
 			
-			el.on(scope.eventType, function(e) {
-				
-				console.log(el.prop('value'))
-				
-				scope.update();
+			el.on('blur', function(e) {
 				
 				el.prop('value', '');
 			})
 		}
 	}
 });
-gillray.controller('single', ['$scope', function($scope) {
+gillray.controller('single', ['$scope', 'prints', function($scope, prints) {
+	
+	function getId() {
+		
+		var urlParts = window.location.pathname.split('/');
+		
+		var idIndex = urlParts.indexOf('edit') + 1
+		
+		return parseInt(urlParts[idIndex]) || false;
+	}
 	
 	$scope.all = $scope;
 	
@@ -42,6 +62,7 @@ gillray.controller('single', ['$scope', function($scope) {
 		//Content
 		images: [],
 		description: "",
+		transcription: "",
 		
 		//Ancillary
 		subjects: [],
@@ -50,24 +71,31 @@ gillray.controller('single', ['$scope', function($scope) {
 		sources: []
 	}
 	
-	$scope.addimage = function(val) {
-		
-		console.log(val)
-		
-		//ev.target.value = '';
-		
-		$scope.print.images.push(val);
-	};
+	var printID = getId();
 	
-	$scope.deleteImage = function(item) {
+	if (printID) {
 		
-		$scope.print.images.splice($scope.print.images.indexOf(item), 1);
+			prints.getPrint(getId()).then(function(data) {
+		
+			$scope.print = data[0];
+		})
+	}
+	
+	//Add items to array iteratively (e.g., images, subjects, tags)
+	$scope.addItem = function(val, collection) {
+		
+		if (val.length < 1) return false;
+		
+		if ($scope.print[collection].indexOf(val) == -1) $scope.print[collection].push(val);
+	}
+	
+	//Delete items from an array
+	$scope.deleteItem = function(item, collection) {
+		
+		$scope.print[collection].splice($scope.print[collection].indexOf(item), 1);
 	};
 	
 	$scope.submitEdits = function(e) {
 		
-		//e.preventDefault();
-		
-		console.log($scope.print)
 	}
 }]);

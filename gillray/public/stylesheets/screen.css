@@ -7990,3 +7990,12 @@ th.hide-for-touch {
 body {
   color: black;
 }
+
+.edit-form {
+  padding: 0 2%;
+}
+.edit-form .submit {
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}

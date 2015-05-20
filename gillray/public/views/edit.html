@@ -1,65 +1,103 @@
-<h1>This is the Edit template</h1>
-<form class="edit-form row" ng-submit="submitEdits()">
+<h1>Edit Template</h1>
+<form class="edit-form row" action="/api/new" method="post" ng-submit="submitEdits()">
 	
 	<div class="row">
 		
-		<div class="columns medium-1">
+		<div class="columns large-1">
 			
 			<!-- Bohn ID -->
 			<div class="bohn-id-container row">
 				<h2>ID</h2>
-				<input class="" placeholder="number" type="number" ng-model="print.bohnID" />
+				<input class="" name="id" placeholder="number" type="number" ng-model="print.bohnID" />
 			</div>
 		</div>
 		
-		<div class="columns medium-11">
+		<div class="columns large-9">
 			
 			<!-- Title -->
 			<div class="bohn-id-container row">
 				<h2>Title</h2>
-				<input class="" placeholder="Title" type="text" ng-model="print.title" />
+				<input name="title" class="" placeholder="Title" type="text" ng-model="print.title" />
 			</div>
 		</div>
 		
-	</div>
-	
-	<div class="row">
-		
-		<div class="columns medium-3">
-			
+		<div class="columns large-2">
 			<!-- Date -->
 			<div class="date row">
 				<h2>Date</h2>
-				<input class="" type="date" ng-model="print.date"/>
+				<input name="date" class="" type="date" ng-model="print.date"/>
 			</div>
 		</div>
-		
-		<div class="columns medium-5">
-
+	</div><!-- ./ End of row -->
+	
+	<div class="row">
+		<div class="columns large-4">
 			<!-- Images -->
 			<div class="images-container ">
 				<h2>Images</h2>
 				<!-- Repeat them -->
 				<div ng-repeat="i in print.images" class="row">
-					<p class="large-10 columns">
-						<input type="text" value="{{i}}" />
+					<p class="large-11 columns">
+						<input name="images" type="text" value="{{i}}" />
 					</p>
-					<a class="small-2" value="delete" ng-click="deleteImage(i)">X</a>
+					<a class="large-1" value="delete" ng-click="deleteItem(i, 'images')">X</a>
 				</div>
-
 				<!-- Always blank -->
 				<div class="row">
-					<p class="large-10 columns">
-						<input form-adder type="text" placeholder="image url" update="addimage('test');" event-type="blur" ng-model="newimage"/>
+					<p class="large-11 columns">
+						<input form-adder type="text" placeholder="Image url" ng-blur="addItem(newimage, 'images')" ng-model="newimage"/>
 					</p>
 				</div>
 			</div>
 		</div>
 		
-		<div class="columns medium-4">
-			
+		<div class="columns large-4">
+			<h2>Subjects</h2>
+			<!-- Repeat them -->
+			<div ng-repeat="i in print.subjects" class="row">
+				<p class="large-11 columns">
+					<input name="subjects" type="text" value="{{i}}" />
+				</p>
+				<a class="large-1 columns" value="delete" ng-click="deleteItem(i, 'subjects')">X</a>
+			</div>
+			<!-- Always blank -->
+			<div class="row">
+				<p class="large-11 columns">
+					<input form-adder type="text" placeholder="Subject ID" ng-blur="addItem(newsubject, 'subjects')" ng-model="newsubject"/>
+				</p>
+			</div>
 		</div>
-	</div>
+		
+		<div class="columns large-4">
+			<h2>Tags</h2>
+			<div ng-repeat="tag in print.tags" class="row">
+				<div class="large-11 columns">
+					<input name="tags" type="text" value="{{tag}}" />
+				</div>
+				<a class="large-1 columns" value="delete" ng-click="deleteItem(i, 'tags')">X</a>
+			</div>
+			
+			<div class="row">
+				<p class="large-11 columns">
+					<input form-adder type="text" placeholder="Add a tag" ng-blur="addItem(newTag, 'tags')" ng-model="newTag"/>
+				</p>
+			</div>
+		</div>
+		
+	</div><!-- ./ End of row -->
 	
-	<input type="submit" />
+	<div class="row">
+		<div class="columns large-6">
+			<h2>Transcription</h2>
+			<textarea name="transcription" rows="18" cols="50"></textarea>
+		</div>
+		<div class="columns large-6">
+			<h2>Description</h2>
+			<textarea name="description" rows="18" cols="50"></textarea>
+		</div>
+	</div><!-- ./ End of row -->
+	
+	<div class="row submit">
+		<input class="button round" type="submit" />
+	</div>
 </form>

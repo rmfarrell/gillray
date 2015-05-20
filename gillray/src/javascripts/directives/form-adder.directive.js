@@ -10,11 +10,7 @@ gillray.directive('formAdder', function() {
 		
 		link: function(scope, el, attrs) {
 			
-			el.on(scope.eventType, function(e) {
-				
-				console.log(el.prop('value'))
-				
-				scope.update();
+			el.on('blur', function(e) {
 				
 				el.prop('value', '');
 			})

@@ -6,56 +6,26 @@ router.get('/', function(req, res, next) {
 });
 
 //Create a new 
-router.get('/edit', function(req, res, next) {
+router.get('/new', function(req, res, next) {
 	
-	res.render('edit-print', { title: 'est' });
+	res.render('edit-print', { title: 'New Print' });
 });
 
 router.get('/edit/:id', function(req, res, next) {
 	
-	res.render('edit-print', { title: req.body });
+	res.render('edit-print', { 
+		title: "print-" + req.param("id")
+	});
+});
+
+router.get('/edit', function(req, res, next) {
 	
-	console.log('edit an existing one');
+	res.redirect('/prints/new');
 });
 
 /*router.get('/:id', function(req, res, next) {
   res.render('edit-print');
 	console.log('print id: ' + req.params.id)
 });*/
-
-router.post('/new', function(req, res, next) {
-	
- return	res.render('edit-print');
-	
-	console.log('test')
-	
-	console.log("title: " + req.body.title);
-	
-	var db = req.db;
-	
-	var collection = db.get('prints');
-	
-	collection.insert({
-		bohnID: 0,
-		images : [],
-		title: "",
-		date: null,
-		description: "",
-		tags: [],
-		subjects: [],
-		collections: [],
-		sources: []
-	}, function (err, doc) {
-			
-	  if (err) {
-			// If it failed, return error
-			res.send("index");
-	  }
-	  else {
-			console.log(doc)
-	  }
-	});
- // res.render('index', { title: req.body });
-});
 
 module.exports = router;
