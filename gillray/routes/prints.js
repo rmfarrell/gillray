@@ -14,7 +14,7 @@ router.get('/new', function(req, res, next) {
 router.get('/edit/:id', function(req, res, next) {
 	
 	res.render('edit-print', { 
-		title: "print-" + req.param("id")
+		title: "print-" + req.params["id"]
 	});
 });
 

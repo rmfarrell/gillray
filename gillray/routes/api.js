@@ -8,7 +8,7 @@ router.get('/print/:id', function(req, res, next) {
 	var collection = db.get('prints');
 	
 	collection.find({
-		bohnID: req.param("id")
+		bohnID: req.params["id"]
 	}, function (err, doc) {
 			
 	  if (err) console.log(error)
@@ -17,15 +17,20 @@ router.get('/print/:id', function(req, res, next) {
 	});
 });
 
-router.post('/new', function(req, res, next) {
+function checkUnique(req, res, next) {
 
-	function uniqueID() {
-		
-		return true;
-	};
-	
- 	//return	res.render('edit-print');
-	
+	req.db.get('prints').find({bohnID: req.body.id}, function(err, doc) {
+
+		if (err) return next(err);
+
+		if (doc.length > 0) return next(new Error('User is not unique'));
+
+		next();
+	});
+}
+
+router.post('/new', checkUnique, function(req, res, next) {
+
 	var db = req.db;
 	
 	var collection = db.get('prints');
@@ -43,15 +48,12 @@ router.post('/new', function(req, res, next) {
 	}, function (err, doc) {
 			
 	  if (err) {
-			// If it failed, return error
-			res.send("index");
+
+	  	console.log(err)
 	  }
 	  else {
-			
-			if (uniqueID()) {
-				
-				console.log(doc)
-			}
+
+	  	console.log('wrote doc', doc)
 	  }
 	});
 });
