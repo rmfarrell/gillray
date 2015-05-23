@@ -1,6 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
+
+//Middleware
+function checkUnique(req, res, next) {
+
+	req.db.get('prints').find({bohnID: req.body.id}, function(err, doc) {
+
+		if (err) return next(err);
+
+		if (doc.length > 0) return next(new Error('User is not unique'));
+
+		next();
+	});
+}
+
 router.get('/print/:id', function(req, res, next) {
 	
 	var db = req.db;
@@ -17,21 +31,94 @@ router.get('/print/:id', function(req, res, next) {
 	});
 });
 
-function checkUnique(req, res, next) {
+router.get('/admin/tags', function(req, res, next) {
 
-	req.db.get('prints').find({bohnID: req.body.id}, function(err, doc) {
+	var tags = req.db.get('tags');
 
-		if (err) return next(err);
+	tags.find({}, function(err, docs) {
 
-		if (doc.length > 0) return next(new Error('User is not unique'));
+		if (err) console.log(err);
 
-		next();
+			else res.send(docs);
 	});
-}
+});
 
-router.post('/admin/subjects/add', function(req, res, next) {
-	
-	
+router.post('/admin/tags/new', function(req, res, next) {
+
+	var tag = req.body.tag;
+
+	req.db.get('tags').insert({
+		name: tag
+	}, function(err, doc) {
+
+		if (err) console.log(err);
+
+			else res.send(doc).end();
+	});
+});
+
+router.post('/admin/tags/remove', function(req, res, next) {
+
+	req.db.get('tags').remove({
+		_id: req.body.id
+	}, function(err, status) {
+
+		if (err) console.log(err);
+
+			else res.sendStatus(200).end()
+	})
+});
+
+router.post('/admin/subjects/new', function(req, res, next) {
+
+	var _subject = req.body.subject;
+
+	req.db.get('subjects').insert(_subject, function(err, doc) {
+
+		if (err) console.log(err);
+
+			else res.send(doc).end();
+	});
+});
+
+router.post('/admin/subjects/update/:id', function(req, res, next) {
+
+	console.log(req.body.subject)
+
+	req.db.get('subjects').update({
+
+		_id: req.params['id']
+
+	}, req.body.subject, function(err, doc) {
+
+		if (err) console.log(err)
+
+			else console.log(doc);
+	})
+});
+
+router.post('/admin/subjects/remove', function(req, res, next) {
+
+	req.db.get('subjects').remove({
+		_id: req.body.id
+	}, function(err, status) {
+
+		if (err) console.log(err);
+
+			else res.sendStatus(200).end()
+	});
+});
+
+router.get('/admin/subjects', function(req, res, next) {
+
+	var subjectsCollection = req.db.get('subjects');
+
+	subjectsCollection.find({}, function(err, docs) {
+
+		if (err) console.log(err);
+
+			else res.send(docs);
+	});
 })
 
 router.post('/new', checkUnique, function(req, res, next) {

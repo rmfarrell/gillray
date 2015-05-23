@@ -7,7 +7,7 @@
 			<h2>Subjects</h2>
 			
 			<div class="row" ng-repeat="subject in subjects">
-				<div class="name columns large-5">
+				<div class="name columns large-4">
 					<input type="text" name="name" placeholder="Name" ng-model="subject.name"/>
 				</div>
 				<div class="wikipedia columns large-5">
@@ -16,20 +16,21 @@
 				<div class="id columns large-1" class="number">
 					{{subject.id}}
 				</div>
-				<div class="close columns large-1">
-					<a ng-click="removeItem(subject, subjects)">X</a>
+				<div class="close columns large-3">
+					<a ng-click="updateSubject(subject)">Update</a> | 
+					<a ng-click="removeSubject(subject)">Delete</a>
 				</div>
 			</div><!-- ./End of ngRepeat Subjects -->
 			
 			<div class="row">
-				<div class="name columns large-5">
-					<input clear="hh" type="text" name="name" placeholder="Name" ng-model="newSubject.name"/>
+				<div class="name columns large-4">
+					<input type="text" name="name" placeholder="Name" ng-model="tempModels.subject.name"/>
 				</div>
 				<div class="wikipedia columns large-5">
-					<input clear="hh" type="text" name="wikipedia" placeholder="Wikipedia URL" ng-model="newSubject.wikipedia"/>
+					<input type="text" name="wikipedia" placeholder="Wikipedia URL" ng-model="tempModels.subject.wikipedia"/>
 				</div>
-				<div class="close columns large-2">
-					<a ng-click="addItem(newSubject, subjects)" class="">[Add +]</a>
+				<div class="close columns large-3">
+					<a ng-click="addSubject(tempModels.subject, subjects)" class="">Add</a>
 				</div>
 			</div><!-- ./End of Subjects Adder -->
 			
@@ -40,24 +41,20 @@
 			<h2>Tags</h2>
 			<div class="row" ng-repeat="tag in tags">
 				<div class="columns large-10">
-					<input type="text" name="tags" placeholder="tag" ng-model="tag">
+					<p>{{tag.name}}</p>
 				</div>
 				<div class="columns large-2">
-					<a ng-click="removeItem(tag, tags)">X</a>
+					<a ng-click="removeTag(tag)">X</a>
 				</div>
 			</div><!-- ./End of ngRepeat tags -->
 			<div class="row">
 				<div class="columns large-10">
-					<input clear="hh"type="text" ng-model="newTag.name" placeholder="Add a Tag" />
+					<input clear="hh"type="text" ng-model="tempModels.newTag" placeholder="Add a Tag" />
 				</div>
 				<div class="columns large-2">
-					<a ng-click="addItem(newTag.name, tags)">[Add +]</a>
+					<a ng-click="addTag(tempModels.newTag)">Add</a>
 				</div>
 			</div><!-- ./End of Tags adder -->
 		</div><!-- ./End of Tags column> -->
 	</div><!-- ./End of Row -->
-	
-	<div class="row submit">
-		<input class="button round" type="submit" />
-	</div>
 </form>
