@@ -45,7 +45,7 @@
 				<!-- Always blank -->
 				<div class="row">
 					<p class="large-11 columns">
-						<input form-adder type="text" placeholder="Image url" ng-blur="addItem(newimage, 'images')" ng-model="newimage"/>
+						<input type="text" placeholder="Image url" ng-blur="addItem(tempModels.newImage, 'images')" ng-model="tempModels.newImage"/>
 					</p>
 				</div>
 			</div>
@@ -63,7 +63,7 @@
 			<!-- Always blank -->
 			<div class="row">
 				<p class="large-11 columns">
-					<input form-adder type="text" placeholder="Subject ID" ng-blur="addItem(newsubject, 'subjects')" ng-model="newsubject"/>
+					<input type="text" placeholder="Subject ID" ng-blur="addItem(tempModels.newSubject, 'subjects')" ng-model="tempModels.newSubject"/>
 				</p>
 			</div>
 		</div>
@@ -79,7 +79,7 @@
 			
 			<div class="row">
 				<p class="large-11 columns">
-					<input form-adder type="text" placeholder="Add a tag" ng-blur="addItem(newTag, 'tags')" ng-model="newTag"/>
+					<input type="text" placeholder="Add a tag" ng-blur="addItem(tempModels.newTag, 'tags')" ng-model="tempModels.newTag"/>
 				</p>
 			</div>
 		</div>

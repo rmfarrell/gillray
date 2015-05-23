@@ -29,6 +29,11 @@ function checkUnique(req, res, next) {
 	});
 }
 
+router.post('/admin/subjects/add', function(req, res, next) {
+	
+	
+})
+
 router.post('/new', checkUnique, function(req, res, next) {
 
 	var db = req.db;
@@ -49,11 +54,11 @@ router.post('/new', checkUnique, function(req, res, next) {
 			
 	  if (err) {
 
-	  	console.log(err)
-	  }
-	  else {
+	  	console.log(err);
+			
+	  } else {
 
-	  	console.log('wrote doc', doc)
+	  	console.log('wrote doc', doc);
 	  }
 	});
 });

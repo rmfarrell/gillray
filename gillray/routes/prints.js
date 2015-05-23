@@ -18,6 +18,11 @@ router.get('/edit/:id', function(req, res, next) {
 	});
 });
 
+router.get('/admin/data', function(req, res, next) {
+	
+	res.render('admin-data', {});
+});
+
 router.get('/edit', function(req, res, next) {
 	
 	res.redirect('/prints/new');

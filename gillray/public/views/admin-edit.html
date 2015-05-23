@@ -1,0 +1,63 @@
+<h1>Edit Dictionary Items</h1>
+<form class="edit-form row" action="/admin/subjects/add" method="post" ng-submit="submit()">
+	
+	<div class="row">
+		
+		<div class="columns large-8">
+			<h2>Subjects</h2>
+			
+			<div class="row" ng-repeat="subject in subjects">
+				<div class="name columns large-5">
+					<input type="text" name="name" placeholder="Name" ng-model="subject.name"/>
+				</div>
+				<div class="wikipedia columns large-5">
+					<input type="url" name="wikipedia" placeholder="Wikipedia URL" ng-model="subject.wikipedia"/>
+				</div>
+				<div class="id columns large-1" class="number">
+					{{subject.id}}
+				</div>
+				<div class="close columns large-1">
+					<a ng-click="removeItem(subject, subjects)">X</a>
+				</div>
+			</div><!-- ./End of ngRepeat Subjects -->
+			
+			<div class="row">
+				<div class="name columns large-5">
+					<input clear="hh" type="text" name="name" placeholder="Name" ng-model="newSubject.name"/>
+				</div>
+				<div class="wikipedia columns large-5">
+					<input clear="hh" type="text" name="wikipedia" placeholder="Wikipedia URL" ng-model="newSubject.wikipedia"/>
+				</div>
+				<div class="close columns large-2">
+					<a ng-click="addItem(newSubject, subjects)" class="">[Add +]</a>
+				</div>
+			</div><!-- ./End of Subjects Adder -->
+			
+			
+		</div><!-- ./End of Subjects Column -->
+		
+		<div class="columns large-4">
+			<h2>Tags</h2>
+			<div class="row" ng-repeat="tag in tags">
+				<div class="columns large-10">
+					<input type="text" name="tags" placeholder="tag" ng-model="tag">
+				</div>
+				<div class="columns large-2">
+					<a ng-click="removeItem(tag, tags)">X</a>
+				</div>
+			</div><!-- ./End of ngRepeat tags -->
+			<div class="row">
+				<div class="columns large-10">
+					<input clear="hh"type="text" ng-model="newTag.name" placeholder="Add a Tag" />
+				</div>
+				<div class="columns large-2">
+					<a ng-click="addItem(newTag.name, tags)">[Add +]</a>
+				</div>
+			</div><!-- ./End of Tags adder -->
+		</div><!-- ./End of Tags column> -->
+	</div><!-- ./End of Row -->
+	
+	<div class="row submit">
+		<input class="button round" type="submit" />
+	</div>
+</form>

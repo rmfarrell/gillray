@@ -1,0 +1,7 @@
+extends layout
+
+block content
+	div(ng-app="gillray")
+		div(ng-controller="admin-edit")
+			div(ng-include="'/views/admin-edit.html'")
+			div(ng-view)

@@ -21,25 +21,55 @@ gillray.service('prints', ['$q', '$http', function($q, $http) {
 		return deferred.promise;
 	};
 }]);
-gillray.directive('formAdder', function() {
+gillray.controller('admin-edit', ['$scope', '$rootScope', function($scope, $rootScope) {
 	
-	return {
-		
-		scope: {
-			ngModel: "@",
-			update: "&",
-			eventType: "@"
+	$scope.subjects = [
+		{
+			name: "Name 1",
+			wikipedia: "",
+			id: "123"
 		},
-		
-		link: function(scope, el, attrs) {
-			
-			el.on('blur', function(e) {
-				
-				el.prop('value', '');
-			})
+		{
+			name: "Name 2",
+			wikipedia: "",
+			id: "111"
 		}
-	}
-});
+	];
+	
+	$scope.tags = [
+		'Political',
+		'Suppressed'
+	]
+			
+	$scope.newSubject = {};
+	
+	$scope.newTag = {};
+	
+	$scope.newTag.name = "";
+		
+	$scope.removeItem = function(item, collection) {
+		
+		return collection.splice(collection.indexOf(item), 1);
+	};
+	
+	$scope.addItem = function(item, collection) {
+		
+		console.log($scope.newTag)
+		
+		collection.push(item);
+		
+		$scope.newSubject = {};
+		
+		$scope.newTag.name = "";
+		
+		console.log($scope.newTag)
+	};
+	
+	$scope.submit = function () {
+		
+		alert('test');
+	};
+}]);
 gillray.controller('single', ['$scope', 'prints', function($scope, prints) {
 	
 	function getId() {
@@ -81,12 +111,16 @@ gillray.controller('single', ['$scope', 'prints', function($scope, prints) {
 		})
 	}
 	
+	$scope.tempModels = {}
+	
 	//Add items to array iteratively (e.g., images, subjects, tags)
 	$scope.addItem = function(val, collection) {
 		
 		if (val.length < 1) return false;
 		
 		if ($scope.print[collection].indexOf(val) == -1) $scope.print[collection].push(val);
+
+		$scope.tempModels = {}
 	}
 	
 	//Delete items from an array

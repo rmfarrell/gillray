@@ -39,12 +39,16 @@ gillray.controller('single', ['$scope', 'prints', function($scope, prints) {
 		})
 	}
 	
+	$scope.tempModels = {}
+	
 	//Add items to array iteratively (e.g., images, subjects, tags)
 	$scope.addItem = function(val, collection) {
 		
 		if (val.length < 1) return false;
 		
 		if ($scope.print[collection].indexOf(val) == -1) $scope.print[collection].push(val);
+
+		$scope.tempModels = {}
 	}
 	
 	//Delete items from an array
