@@ -1,1 +1,1 @@
-var gillray = angular.module('gillray',[]);
+var gillray = angular.module('gillray',['angucomplete']);

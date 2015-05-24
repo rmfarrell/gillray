@@ -19,6 +19,7 @@ gulp.task('compass', function() {
 gulp.task('scripts', function() {
 	
 	var _scripts = [
+		'src/javascripts/plugins/*.js',
 		'src/javascripts/gillray.js',
 		'src/javascripts/providers/*.js',
 		'src/javascripts/directives/*.js',

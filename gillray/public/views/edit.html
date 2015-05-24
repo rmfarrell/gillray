@@ -63,7 +63,12 @@
 			<!-- Always blank -->
 			<div class="row">
 				<p class="large-11 columns">
-					<input type="text" placeholder="Subject ID" ng-blur="addItem(tempModels.newSubject, 'subjects')" ng-model="tempModels.newSubject"/>
+					<angucomplete
+            selectedobject="allSubjects"
+            localdata="fuckyou"
+            inputclass="form-control form-control-small"/>
+					<!--<autocomplete ng-model="tempModels.newSubject" data="allSubjects.names" on-change="addSubject($event)">-->
+					<!--<input autocomplete type="text" placeholder="Subject ID" ng-blur="addItem(tempModels.newSubject, 'subjects')" ng-model="tempModels.newSubject"/>-->
 				</p>
 			</div>
 		</div>
@@ -71,15 +76,15 @@
 		<div class="columns large-4">
 			<h2>Tags</h2>
 			<div ng-repeat="tag in print.tags" class="row">
-				<div class="large-11 columns">
-					<input name="tags" type="text" value="{{tag}}" />
+				<div class="large-8 columns">
+					<p>{{tag.name}}</p>
 				</div>
-				<a class="large-1 columns" value="delete" ng-click="deleteItem(i, 'tags')">X</a>
+				<a class="large-4 columns" value="delete" ng-click="deleteItem(i, 'tags')">Remove</a>
 			</div>
 			
 			<div class="row">
-				<p class="large-11 columns">
-					<input type="text" placeholder="Add a tag" ng-blur="addItem(tempModels.newTag, 'tags')" ng-model="tempModels.newTag"/>
+				<p class="large-10 columns">
+					<select ng-model="tempModels.newTag" ng-options="tag.name for tag in allTags" ng-change="addTag(tempModels.newTag)"></select>
 				</p>
 			</div>
 		</div>

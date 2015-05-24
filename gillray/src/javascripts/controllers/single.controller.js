@@ -1,4 +1,4 @@
-gillray.controller('single', ['$scope', 'prints', function($scope, prints) {
+gillray.controller('single', ['$scope', 'prints', 'tags', 'subjects', function($scope, prints, tags, subjects) {
 	
 	function getId() {
 		
@@ -27,6 +27,44 @@ gillray.controller('single', ['$scope', 'prints', function($scope, prints) {
 		tags: [],
 		collections: [],
 		sources: []
+	}
+
+	$scope.allTags = [];
+
+	$scope.allSubjects = {
+		names: [], //Record this separately for autocomplete to work
+		subjects: []
+	};
+
+	tags.getAll().then(function(data) {
+
+		$scope.allTags = data;
+	});
+
+	subjects.getAll().then(function(data) {
+
+		$scope.allSubjects = data;
+
+		return;
+
+		angular.forEach(data, function(obj, index) {
+
+			$scope.allSubjects.names.push(obj.name)
+
+			$scope.allSubjects.subjects.push(obj)
+		})
+	})
+
+	$scope.addSubject = function() {
+		console.log('test')
+	}
+
+
+	$scope.addTag = function(tag) {
+
+		if ($scope.print.tags.indexOf(tag) === -1) $scope.print.tags.push(tag);
+
+		$scope.tempModels = {};
 	}
 	
 	var printID = getId();
