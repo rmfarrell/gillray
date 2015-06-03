@@ -1,5 +1,5 @@
 <h1>Edit Template</h1>
-<form class="edit-form row" action="/api/new" method="post" ng-submit="submitEdits()">
+<form class="edit-form row" action="/api/new" method="post" ng-submit="submitEdits($event)">
 	
 	<div class="row">
 		
@@ -54,19 +54,20 @@
 		<div class="columns large-4">
 			<h2>Subjects</h2>
 			<!-- Repeat them -->
-			<div ng-repeat="i in print.subjects" class="row">
+			<div ng-repeat="subject in print.subjects" class="row">
 				<p class="large-11 columns">
-					<input name="subjects" type="text" value="{{i}}" />
+					{{subject.name}}
 				</p>
-				<a class="large-1 columns" value="delete" ng-click="deleteItem(i, 'subjects')">X</a>
+				<a class="large-1 columns" value="delete" ng-click="deleteItem(subject, 'subjects')">X</a>
 			</div>
 			<!-- Always blank -->
 			<div class="row">
 				<p class="large-11 columns">
-					<angucomplete
+					<select ng-model="tempModels.newSubject" ng-options="subject.name for subject in allSubjects" ng-change="addSubject(tempModels.newSubject)"></select>
+					<!--<angucomplete
             selectedobject="allSubjects"
             localdata="fuckyou"
-            inputclass="form-control form-control-small"/>
+            inputclass="form-control form-control-small"/>-->
 					<!--<autocomplete ng-model="tempModels.newSubject" data="allSubjects.names" on-change="addSubject($event)">-->
 					<!--<input autocomplete type="text" placeholder="Subject ID" ng-blur="addItem(tempModels.newSubject, 'subjects')" ng-model="tempModels.newSubject"/>-->
 				</p>

@@ -1,0 +1,34 @@
+
+<table>
+	<tr>
+		<th><!-- Thumb --></th>
+		<th><a ng-click="sortCritera.title = !sortCritera.title">Title</a></th>
+		<th><a ng-click="sortCritera.date = !sortCritera.date">Date {{dateSort}}</a></th>
+		<th>Subjects</th>
+		<th>Tags</th>
+		<ht>
+	</tr>
+	<tr ng-repeat="print in prints">
+		<td>
+			{{print.thumbnail}}
+		</td>
+		<td>
+			{{print.title}}
+		</td>
+		<td>
+			{{print.date | date:'MMM, d, y'}}
+		</td>
+		<td>
+			<a ng-repeat="subject in print.subjects">{{subject.name}}
+				{{$last ? '' : ', '}}
+			</a>
+		</td>
+		<td>
+			<a ng-repeat="tag in print.tags">
+				{{tag.name}}
+				{{$last ? '' : ', '}}</a>
+		</td>
+	</tr>
+</table>
+
+Sort Critera: {{sortCritera}}

@@ -1,3 +1,7 @@
 extends layout
 
 block content
+	h1 Index page
+	div(ng-app="gillray")
+		div(ng-controller="index")
+			div(ng-include="'/views/index.html'")
