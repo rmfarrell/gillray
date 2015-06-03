@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var compass = require('compass')
+var compass = require('compass');
+var writeIndex = require('./query-to-json');
 
 //Mongo
 var mongo = require('mongodb');

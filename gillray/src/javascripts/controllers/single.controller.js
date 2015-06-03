@@ -44,19 +44,13 @@ gillray.controller('single', ['$scope', 'prints', 'tags', 'subjects', function($
 	subjects.getAll().then(function(data) {
 
 		$scope.allSubjects = data;
-
-		return;
-
-		angular.forEach(data, function(obj, index) {
-
-			$scope.allSubjects.names.push(obj.name)
-
-			$scope.allSubjects.subjects.push(obj)
-		})
 	})
 
-	$scope.addSubject = function() {
-		console.log('test')
+	$scope.addSubject = function(subject) {
+		
+		$scope.print.subjects.push(subject);
+
+		$scope.tempModels = {};
 	}
 
 
@@ -97,5 +91,8 @@ gillray.controller('single', ['$scope', 'prints', 'tags', 'subjects', function($
 	
 	$scope.submitEdits = function(e) {
 		
+		e.preventDefault();
+		
+		prints.new($scope.print)
 	}
 }]);

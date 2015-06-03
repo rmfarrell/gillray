@@ -266,6 +266,35 @@ gillray.service('prints', ['$q', '$http', function($q, $http) {
 		
 		return deferred.promise;
 	};
+	
+	//Get index.json (no db query)
+	this.getIndex = function() {
+		
+		var deferred = $q.defer();
+		
+		$http.get('/index.json').success(function(data) {
+			
+			deferred.resolve(data);
+			
+		}).error(function(err) {
+			
+			deferred.reject(err);
+		})
+		
+		return deferred.promise;
+	}
+	
+	this.new = function(printObj) {
+		
+		$http.post('/api/new', printObj).success(function(data) {
+			
+			console.log(data);
+			
+		}).error(function(err) {
+			
+			console.log(err);
+		})
+	}
 }]);
 gillray.service('subjects', ['$http', '$q', function($http, $q) {
 
@@ -432,6 +461,26 @@ gillray.controller('admin-edit', ['$scope', '$rootScope', 'tags', 'subjects', fu
 		})
 	}
 }]);
+gillray.controller('index', ['$scope', 'prints', function($scope, prints) {
+	
+	
+	$scope.prints = [];
+	
+	prints.getIndex().then(function(data) {
+		
+		$scope.prints = data
+	})
+	
+	$scope.sortCritera = {
+		date: null,
+		title: null
+	}
+	
+	$scope.$watchCollection('sortCritera', function(newVal, oldVal) {
+		
+		console.log($scope.sortCritera)
+	});
+}]);
 gillray.controller('single', ['$scope', 'prints', 'tags', 'subjects', function($scope, prints, tags, subjects) {
 	
 	function getId() {
@@ -478,19 +527,13 @@ gillray.controller('single', ['$scope', 'prints', 'tags', 'subjects', function($
 	subjects.getAll().then(function(data) {
 
 		$scope.allSubjects = data;
-
-		return;
-
-		angular.forEach(data, function(obj, index) {
-
-			$scope.allSubjects.names.push(obj.name)
-
-			$scope.allSubjects.subjects.push(obj)
-		})
 	})
 
-	$scope.addSubject = function() {
-		console.log('test')
+	$scope.addSubject = function(subject) {
+		
+		$scope.print.subjects.push(subject);
+
+		$scope.tempModels = {};
 	}
 
 
@@ -531,5 +574,8 @@ gillray.controller('single', ['$scope', 'prints', 'tags', 'subjects', function($
 	
 	$scope.submitEdits = function(e) {
 		
+		e.preventDefault();
+		
+		prints.new($scope.print)
 	}
 }]);
