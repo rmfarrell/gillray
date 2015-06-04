@@ -1,3 +1,10 @@
 $burnt_umber: #312713;
 $copper: #ab7811;
 $periwinkle: #74828f;
+$warmGrey: #1c1812;
+
+@mixin crossHatch($direction, $size) {
+
+	//$direction should be asc,desc,hor,vert 
+	background-image: url(../stripes/#{$direction}_#{$size}.png);
+}

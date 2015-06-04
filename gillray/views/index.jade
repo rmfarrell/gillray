@@ -2,8 +2,20 @@ extends layout
 
 block content
 	div(class="index")
-		div(class="header-lockup")
-			h1 The James Gillray Online Archive
-	div(ng-app="gillray")
-		div(ng-controller="index")
-			div(ng-include="'/views/index.html'")
+		div(class="header-area")
+			div(class="shadow")
+			div(class="light")
+			img(class="gillray-portrait" src="site_imgs/gillray-portrait.png")
+			h1(class="lockup") The James Gillray Online Archive
+
+		div(class="floating-nav" id="floating-nav")
+			div(class="shadow-bar")
+			div(class="input-container search")
+				input(type="text")
+				span(class="input-label")
+
+			div(class="results-container")
+
+		div(ng-app="gillray")
+			div(ng-controller="index")
+				div(ng-include="'/views/index.html'")

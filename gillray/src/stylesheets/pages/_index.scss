@@ -1,10 +1,50 @@
 .index {
 
-	.header-lockup {
+	.header-area {
 		height: 300px;
-		border: 1px solid red;
-		background-color: orange;
-		background-image: url('../stripes/asc_11.png');
+		background-color: $burnt_umber;
+		@include crossHatch(desc, 8);
 		background-repeat: repeat;
+		position: relative;
+	}
+
+	.gillray-portrait {
+		height: 100%;
+		position: absolute;
+		left: 50%;
+		z-index: 30;
+	}
+
+	.lockup {
+		background-image: url(../site_imgs/lockup.png);
+		background-size: 100%;
+		width: 600px;
+		height: 200px;
+		background-repeat: no-repeat;
+		text-indent: -999em;
+		position: absolute;
+		left: 50%;
+		margin: 45px 0 0 -550px;
+		z-index: 10;
+	}
+
+	.shadow {
+		background-color: rgba(0,0,0,.15);
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		@include crossHatch(hor, 5);
+		@include opacity(.65);
+	}
+
+	.light {
+		background-color: $burnt_umber;
+		@include crossHatch(desc, 8);
+		height: 200%;
+		width: 100%;
+		position: absolute;
+		border-radius: 60%/40%;
+		top: -304px;
 	}
 }

@@ -8080,10 +8080,97 @@ body {
   width: 34px;
 }
 
-.index .header-lockup {
-  height: 300px;
+.floating-nav {
+  background-color: rgba(28, 24, 18, 0.8);
+  height: 9em;
+  position: relative;
+}
+.floating-nav::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 5px;
+  background-color: #1c1812;
+  border-color: rgba(0, 0, 0, 0.75);
+  border-style: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  z-index: 10;
+  position: absolute;
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+.floating-nav::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-image: url(../stripes/desc_8.png);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75;
+}
+.floating-nav .shadow-bar {
+  height: 1em;
+  top: 3px;
+  width: 100%;
+  position: absolute;
+  background-image: url(../stripes/hor_4.png);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.input-container {
+  display: inline-block;
+  width: 25em;
   border: 1px solid red;
-  background-color: orange;
-  background-image: url("../stripes/asc_11.png");
+  display: none;
+}
+
+.index .header-area {
+  height: 300px;
+  background-color: #312713;
+  background-image: url(../stripes/desc_8.png);
   background-repeat: repeat;
+  position: relative;
+}
+.index .gillray-portrait {
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  z-index: 30;
+}
+.index .lockup {
+  background-image: url(../site_imgs/lockup.png);
+  background-size: 100%;
+  width: 600px;
+  height: 200px;
+  background-repeat: no-repeat;
+  text-indent: -999em;
+  position: absolute;
+  left: 50%;
+  margin: 45px 0 0 -550px;
+  z-index: 10;
+}
+.index .shadow {
+  background-color: rgba(0, 0, 0, 0.15);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-image: url(../stripes/hor_5.png);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65);
+  opacity: 0.65;
+}
+.index .light {
+  background-color: #312713;
+  background-image: url(../stripes/desc_8.png);
+  height: 200%;
+  width: 100%;
+  position: absolute;
+  border-radius: 60%/40%;
+  top: -304px;
 }

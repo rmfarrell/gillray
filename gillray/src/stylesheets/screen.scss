@@ -4,7 +4,9 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "compass/reset";
+@import "compass/css3";
 @import "foundation";
+@import "vars";
 
 body {
 	color: black;
@@ -12,4 +14,5 @@ body {
 
 @import "pages/edit-form";
 @import "components/autocomplete";
+@import "components/floating-nav";
 @import "pages/index";

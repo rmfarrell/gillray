@@ -1,0 +1,48 @@
+.floating-nav {
+	background-color: rgba(28,24,18,.8);
+	height: 9em;
+	position: relative;
+
+	&::before {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 5px;
+		background-color: $warmGrey;
+		border-color: rgba(0,0,0,.75);
+		border-style: solid;
+		border-top-width: 1px;
+		border-bottom-width: 1px;
+		z-index: 10;
+		position: absolute;
+		@include box-shadow(0 0 5px 0 rgba(0, 0, 0, .5));
+	}
+
+	&::after {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		@include crossHatch(desc, 8);
+		@include opacity(.75);
+	}
+
+	.shadow-bar {
+		height: 1em;
+		top: 3px;
+		width: 100%;
+		position: absolute;
+		@include crossHatch(hor, 4);
+		@include opacity(.75);
+		background-color: rgba(0,0,0,.15);
+	}
+}
+
+.input-container {
+	display: inline-block;
+	width: 25em;
+	border: 1px solid red;
+	display: none;
+}
