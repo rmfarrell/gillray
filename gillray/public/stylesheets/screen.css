@@ -8079,3 +8079,11 @@ body {
   height: 34px;
   width: 34px;
 }
+
+.index .header-lockup {
+  height: 300px;
+  border: 1px solid red;
+  background-color: orange;
+  background-image: url("../stripes/asc_11.png");
+  background-repeat: repeat;
+}

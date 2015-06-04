@@ -1,7 +1,9 @@
 extends layout
 
 block content
-	h1 Index page
+	div(class="index")
+		div(class="header-lockup")
+			h1 The James Gillray Online Archive
 	div(ng-app="gillray")
 		div(ng-controller="index")
 			div(ng-include="'/views/index.html'")
