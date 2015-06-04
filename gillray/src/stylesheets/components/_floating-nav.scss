@@ -38,11 +38,8 @@
 		@include opacity(.75);
 		background-color: rgba(0,0,0,.15);
 	}
-}
-
-.input-container {
-	display: inline-block;
-	width: 25em;
-	border: 1px solid red;
-	display: none;
+	
+	.fancy-input {
+		margin: 2em;
+	}
 }

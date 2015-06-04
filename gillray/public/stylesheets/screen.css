@@ -8122,25 +8122,84 @@ body {
   opacity: 0.75;
   background-color: rgba(0, 0, 0, 0.15);
 }
+.floating-nav .fancy-input {
+  margin: 2em;
+}
 
-.input-container {
+.fancy-input {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  display: block;
   display: inline-block;
-  width: 25em;
-  border: 1px solid red;
-  display: none;
+  width: 22em;
+  background: #c9ce96;
+  position: relative;
+  z-index: 10;
+}
+.fancy-input .input-label {
+  font-size: 11px;
+  font-align: center;
+  background-color: rgba(213, 185, 1, 0.5);
+  display: block;
+  text-align: center;
+  height: 1.4em;
+  line-height: 1.6em;
+  color: #1c1812;
+}
+.fancy-input .input-container {
+  margin: 1.5% 1.5% 0 1.5%;
+  background-color: white;
+  height: 2.8em;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  -moz-box-shadow: rgba(0, 0, 0, 0.6) 0 0 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0 0 3px;
+  box-shadow: rgba(0, 0, 0, 0.6) 0 0 3px;
+}
+.fancy-input .input-container::before, .fancy-input .input-container::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+.fancy-input .input-container::after {
+  z-index: -1;
+  background-color: #efefef;
+  top: .3em;
+  right: .2em;
+}
+.fancy-input .input-container::before {
+  z-index: -2;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
+  opacity: 0.2;
+  background-image: url(../stripes/asc_4.png);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.fancy-input input {
+  background-color: transparent;
+  height: 100%;
+  line-height: 1.2em;
+  font-size: 1.5em;
+  padding: 0 .25em;
+}
+.fancy-input input:focus {
+  background-color: white;
 }
 
 .index .header-area {
-  height: 300px;
+  height: 250px;
   background-color: #312713;
   background-image: url(../stripes/desc_8.png);
   background-repeat: repeat;
   position: relative;
+  overflow: hidden;
 }
 .index .gillray-portrait {
   height: 100%;
   position: absolute;
-  left: 50%;
+  left: 55%;
   z-index: 30;
 }
 .index .lockup {
@@ -8152,7 +8211,7 @@ body {
   text-indent: -999em;
   position: absolute;
   left: 50%;
-  margin: 45px 0 0 -550px;
+  margin: 20px 0 0 -475px;
   z-index: 10;
 }
 .index .shadow {
@@ -8171,6 +8230,6 @@ body {
   height: 200%;
   width: 100%;
   position: absolute;
-  border-radius: 60%/40%;
-  top: -304px;
+  border-radius: 60%/45%;
+  top: -241px;
 }
